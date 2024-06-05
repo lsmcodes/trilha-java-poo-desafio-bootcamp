@@ -17,6 +17,63 @@ Considerando o seu conhecimento no domínio bootcamp e no domínio de Programaç
 ## Conceitos Fundamentais
 ### Domínio
 `Domínio` se refere à área temática ou escopo de problema que o sistema de software está sendo construído para abordar. Engloba os conceitos, regras e processos do mundo real que o software é destinado a modelar. Por exemplo, em uma aplicação bancária, o domínio que também é conhecido como `camada de negócio` ou `camada de objetos de negócio` inclui classes correspondentes a conceitos como contas, transações, clientes e regulações relacionadas a operações bancárias.
+```mermaid
+classDiagram
+
+class Catalogo {
+  -scanner: Scanner
+  -dev: Dev
+  -bootcampAtual: Bootcamp
+  -bootcamps: List~Bootcamp~
+  +mostrarMenu()
+  +criarBootcamp()
+  +fazerCadastro()
+}
+
+class Bootcamp {
+  -titulo : String 
+  -descricao : String
+  -dataInicial : LocalDate
+  -dataFinal : LocalDate
+  -devsInscritos : List~Dev~
+  -conteudos : List~Conteudo~
+}
+
+class Dev {
+  -nome : String
+  -conteudosInscritos : List~Conteudo~
+  -conteudosConcluidos : List~Conteudo~
+  +fazerInscricao(Bootcamp)
+  +concluirConteudo(Conteudo)
+  +calcularXpTotal()
+}
+
+class Conteudo {
+  <<Abstract>>
+  #XP_PADRAO : double$
+  #titulo : String
+  #descricao : String
+  +calcularXp() double*
+}
+
+class Curso {
+  -cargaHoraria : int
+}
+
+class Mentoria {
+  -data : LocalDate
+}
+
+Catalogo o--> Dev
+Catalogo o--> Bootcamp
+
+Bootcamp o--> Dev
+Bootcamp *--> Curso
+Bootcamp *--> Mentoria
+
+Conteudo <|-- Mentoria
+Conteudo <|-- Curso
+```
 
 ### Classe
 `Classe` é como um molde ou uma planta que define o `tipo` dos objetos que são criados a partir dela. No mundo real frequentemente encontramos diversos objetos individuais que são do mesmo tipo. Podem existir milhares de bicicletas, todas da mesma marca e modelo. Cada bicicleta foi construída a partir do mesmo conjunto de plantas e portanto, contém os mesmos componentes. Em termos orientados a objetos, podemos dizer que todas essas bicicletas são `instâncias` da classe de `objetos` conhecidos como bicicletas.

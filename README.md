@@ -28,15 +28,20 @@ class Catalogo {
   +mostrarMenu()
   +criarBootcamp()
   +fazerCadastro()
+  +exibirBootcamps()
+  +exibirConteudosPendentes()
 }
 
 class Bootcamp {
-  -titulo : String 
+  -scanner: Scanner
+  -nome : String 
   -descricao : String
   -dataInicial : LocalDate
   -dataFinal : LocalDate
-  -devsInscritos : List~Dev~
   -conteudos : List~Conteudo~
+  -devsInscritos : List~Dev~
+  +adicionarCursosAoBootcamp(Bootcamp)
+  +adicionarMentoriasAoBootcamp(Bootcamp)
 }
 
 class Dev {
@@ -44,8 +49,10 @@ class Dev {
   -conteudosInscritos : List~Conteudo~
   -conteudosConcluidos : List~Conteudo~
   +fazerInscricao(Bootcamp)
-  +concluirConteudo(Conteudo)
+  +cancelarInscricao(Bootcamp)
+  +concluirConteudo(Conteudo, Bootcamp)
   +calcularXpTotal()
+  +obterCertificado(Bootcamp, Dev)
 }
 
 class Conteudo {

@@ -1,12 +1,33 @@
 # DIO - Trilha POO Java
-www.dio.me
+<div style="display:inline-block">
+        <picture  title="Java">
+                <source height="40" width="40" media="(prefers-color-scheme: light)" srcset="https://cdn.simpleicons.org/openjdk/000000">
+                <img height="40" width="40" src="https://cdn.simpleicons.org/openjdk/FFFFFF" />
+        </picture>
+        <picture  title="Apache Maven">
+                <source height="40" width="40" media="(prefers-color-scheme: light)" srcset="https://cdn.simpleicons.org/apachemaven/000000">
+                <img height="40" width="40" src="https://cdn.simpleicons.org/apachemaven/FFFFFF" />
+        </picture>
+        <picture  title="Spring Boot">
+                <source height="40" width="40" media="(prefers-color-scheme: light)" srcset="https://cdn.simpleicons.org/springboot/000000">
+                <img height="40" width="40" src="https://cdn.simpleicons.org/springboot/FFFFFF" />
+        </picture>
+        <picture  title="UML">
+                <source height="40" width="40" media="(prefers-color-scheme: light)" srcset="https://cdn.simpleicons.org/uml/000000">
+                <img height="40" width="40" src="https://cdn.simpleicons.org/uml/FFFFFF" />
+        </picture>
+	<picture  title="Mermaid">
+                <source height="40" width="40" media="(prefers-color-scheme: light)" srcset="https://cdn.simpleicons.org/mermaid/000000">
+                <img height="40" width="40" src="https://cdn.simpleicons.org/mermaid/FFFFFF" />
+        </picture>
+</div>
 
 ## Autora do Desafio e Repositório Original
 - [Camila Cavalcante](https://github.com/cami-la)
 - [Desafio POO](https://github.com/cami-la/desafio-poo-dio)
 
 ## Desafio de Projeto
-Considerando o seu conhecimento no domínio bootcamp e no domínio de Programação Orientada a Objetos, siga os passos a seguir e como desafio, implemente as evoluções que achar interessantes.
+Siga os passos a seguir e como desafio, implemente as evoluções que achar interessantes.
 
 1. Abstraia o domínio Bootcamp e modele seus atributos e métodos;
 2. Crie as classes: `Bootcamp`, `Cursos`, `Mentorias` e `Devs` e as relacione;
@@ -16,106 +37,50 @@ Considerando o seu conhecimento no domínio bootcamp e no domínio de Programaç
 
 ## Conceitos Fundamentais
 ### Domínio
-`Domínio` se refere à área temática ou escopo de problema que o sistema de software está sendo construído para abordar. Engloba os conceitos, regras e processos do mundo real que o software é destinado a modelar. Por exemplo, em uma aplicação bancária, o domínio que também é conhecido como `camada de negócio` ou `camada de objetos de negócio` inclui classes correspondentes a conceitos como contas, transações, clientes e regulações relacionadas a operações bancárias.
+`Domínio` se refere à área temática ou escopo de problema que o sistema de software está sendo construído para abordar. Além de englobar os conceitos, regras e processos do mundo real que o software se propõe a modelar. Por exemplo, uma aplicação que tem como propósito representar os conceitos e comportamentos associados a uma bicicleta, o domínio (também conhecido como `camada de negócios` ou `camada de objetos de negócio`) pode incluir uma classe Bicicleta com propriedades como cadência, velocidade e engrenagem, além de métodos que representem ações como mudar cadência, mudar engrenagem, aumentar velocidade e aplicar freios como demonstra o diagrama a seguir.
 ```mermaid
 classDiagram
 
-class Catalogo {
-  -scanner: Scanner
-  -dev: Dev
-  -bootcampAtual: Bootcamp
-  -bootcamps: List~Bootcamp~
-  +mostrarMenu()
-  +criarBootcamp()
-  +fazerCadastro()
-  +exibirBootcamps()
-  +exibirConteudosPendentes()
+class Bicicleta {
+  -cadencia: int
+  -velocidade: int
+  -engrenagem: int
+  
+  +mudarCadencia(novoValor: int)
+  +mudarEngrenagem(novoValor: int)
+  +aumentarVelocidade(incremento: int)
+  +aplicarFreios(decremento: int)
 }
-
-class Bootcamp {
-  -scanner: Scanner
-  -nome : String 
-  -descricao : String
-  -dataInicial : LocalDate
-  -dataFinal : LocalDate
-  -conteudos : List~Conteudo~
-  -devsInscritos : List~Dev~
-  +adicionarCursosAoBootcamp(Bootcamp)
-  +adicionarMentoriasAoBootcamp(Bootcamp)
-}
-
-class Dev {
-  -nome : String
-  -conteudosInscritos : List~Conteudo~
-  -conteudosConcluidos : List~Conteudo~
-  +fazerInscricao(Bootcamp)
-  +cancelarInscricao(Bootcamp)
-  +concluirConteudo(Conteudo, Bootcamp)
-  +calcularXpTotal()
-  +obterCertificado(Bootcamp, Dev)
-}
-
-class Conteudo {
-  <<Abstract>>
-  #XP_PADRAO : double$
-  #titulo : String
-  #descricao : String
-  +calcularXp() double*
-}
-
-class Curso {
-  -cargaHoraria : int
-}
-
-class Mentoria {
-  -data : LocalDate
-}
-
-Catalogo o--> Dev
-Catalogo o--> Bootcamp
-
-Bootcamp o--> Dev
-Bootcamp *--> Curso
-Bootcamp *--> Mentoria
-
-Conteudo <|-- Mentoria
-Conteudo <|-- Curso
 ```
 
 ### Classe
-`Classe` é como um molde ou uma planta que define o `tipo` dos objetos que são criados a partir dela. No mundo real frequentemente encontramos diversos objetos individuais que são do mesmo tipo. Podem existir milhares de bicicletas, todas da mesma marca e modelo. Cada bicicleta foi construída a partir do mesmo conjunto de plantas e portanto, contém os mesmos componentes. Em termos orientados a objetos, podemos dizer que todas essas bicicletas são `instâncias` da classe de `objetos` conhecidos como bicicletas.
+`Classe` é como um molde ou uma planta que define o `tipo` dos objetos que são criados a partir dela. No mundo real frequentemente encontramos diversos objetos individuais que são do mesmo tipo. Por exemplo, podem existir milhares de bicicletas, todas da mesma marca e modelo, sendo que cada uma delas foi construída a partir do mesmo conjunto de especificações e desenhos técnicos e portanto, contêm os mesmos componentes. Em termos orientados a objetos, podemos dizer que todas essas bicicletas são `instâncias` da classe de `objetos` conhecidos como bicicletas.
 ```java
-class Bicicleta {
-  int cadencia = 0;
-  int velocidade = 0;
-  int engrenagem = 1;
+public class Bicicleta {
+	private int cadencia = 0;
+	private int velocidade = 0;
+	private int engrenagem = 1;
 
-  void mudarCadencia(int novoValor) {
-    cadencia = novoValor;
-  }
+	public void mudarCadencia(int novoValor) {
+		cadencia = novoValor;
+	}
 
-  void mudarEngrenagem(int novoValor) {
-    engrenagem = novoValor;
-  }
+	public void mudarEngrenagem(int novoValor) {
+		engrenagem = novoValor;
+	}
 
-  void aumentarVelocidade(int incremento) {
-    velocidade = velocidade + incremento;   
-  }
+	public void aumentarVelocidade(int incremento) {
+		velocidade = velocidade + incremento;   
+	}
 
-  void aplicarFreios(int decremento) {
-    velocidade = velocidade - decremento;
-  }
-
-  void imprimirEstados() {
-    System.out.println("cadência:" +
-         cadencia + " velocidade:" + 
-         velocidade + " engrenagem:" + engrenagem);
-    }
+	public void aplicarFreios(int decremento) {
+		velocidade = velocidade - decremento;
+	}
 }
 ```
 
 ### Objeto
-`Objetos` no mundo real compartilham duas características: estado e comportamento. Cachorros possuem estado (nome, cor, raça) e comportamento (latir, abanar o rabo, correr). Objetos de software são conceitualmente similares a objetos do mundo real: eles também consistem em estado e comportamento relacionado. Um objeto armazena seu estado em campos (também chamados de `atributos` ou propriedades) e expõe seu comportamento por meio de `métodos`.
+`Objetos` no mundo real compartilham duas características: estado e comportamento. Bicicletas possuem estado (cadência, velocidade, engrenagem) e comportamento (mudar cadência, mudar engrenagem, aumentar velocidade e aplicar freios). Objetos de software são conceitualmente similares a objetos do mundo real: eles também possuem estado e comportamento. Um objeto armazena seu estado em campos (também chamados de `atributos` ou propriedades) e expõe seu comportamento por meio de `métodos`.
 
 ```java
 Bicicleta bicicleta = new Bicicleta();
@@ -131,10 +96,10 @@ bicicleta.aumentarVelocidade(15);
 ### Atributo
 `Atributos` são variáveis dentro de uma classe que definem o `estado` da mesma.
 ```java
-class Bicicleta {
-  int cadencia = 0;
-  int velocidade = 0;
-  int engrenagem = 1;
+public class Bicicleta {
+	private int cadencia = 0;
+  	private int velocidade = 0;
+  	private int engrenagem = 1;
 }
 ```
 
@@ -148,7 +113,7 @@ int engrenagem = 1;
 `Métodos` são blocos de código que apenas são executados quando chamados. Podem receber dados por meio de parâmetros e `definem o comportamento` da classe e dos objetos criados a partir dela.
 ```java
 void mudarCadencia(int novoValor) {
-  cadencia = novoValor;
+  	cadencia = novoValor;
 }
 ```
 ## Referências
